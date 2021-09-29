@@ -36,7 +36,6 @@ let cardArray = [
     document.addEventListener("DOMContentLoaded", function () {
         let clickBoard = document.querySelector(".clickBoard"); 
         let scoreBoard = document.querySelector(".scoreBoard"); 
-      
 
         //define functions 
         
@@ -49,7 +48,7 @@ let cardArray = [
         imgs = document.querySelectorAll("img");
         Array.from(imgs).forEach(img => 
         img.addEventListener("click", flipCard)
-        ) 
+        );
     });
 
     //createBoard function
@@ -62,13 +61,13 @@ let cardArray = [
         img.setAttribute("src", "images/background.JPG");
         img.setAttribute("data-id", index); 
         document.querySelector(".grid").appendChild(img); 
-        })
+        });
     }
     
     // arrangeCard function
     
     function arrangeCard() { 
-        cardArray.sort(() => 0.5 - Math.random())
+        cardArray.sort(() => 0.5 - Math.random());
     }
     
     // flip Card function
@@ -94,7 +93,8 @@ let cardArray = [
             alert("you have found a match"); 
         cardsWon += 1; 
         scoreBoard.innerHTML = cardsWon; 
-        setTimeout(checkWon,500) 
+        setTimeout(checkWon, 500);imgs[firstCard].setAttribute("src", "images/background.JPG");
+        imgs[secondCard].setAttribute("src", "images/background.JPG"); 
         } else { 
         imgs[firstCard].setAttribute("src", "images/background.JPG");
         imgs[secondCard].setAttribute("src", "images/background.JPG"); 
@@ -109,7 +109,7 @@ let cardArray = [
     
     function checkWon() {
         if (cardsWon == cardArray.length / 2) {
-        alert("You won") 
+        alert("You won");
         setTimeout(()=> popup.style.display = "flex" ,300); 
         }
     }
