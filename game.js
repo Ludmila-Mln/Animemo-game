@@ -1,9 +1,10 @@
 
+
 let cardArray = [ 
     { name: "bird", img: "images/bird.JPG", }, 
     { name: "bird", img: "images/bird.JPG", }, 
-    { name: "fish", img: "images/fish.JPG", },
-    { name: "fish", img: "images/fish.JPG", },
+    { name: "fish", img: "images/fish.JPG", }, 
+    { name: "fish", img: "images/fish.JPG", }, 
     { name: "giraffe", img: "images/giraffe.JPG", },
     { name: "giraffe", img: "images/giraffe.JPG", },
     { name: "fox", img: "images/fox.JPG", },
@@ -12,38 +13,31 @@ let cardArray = [
     { name: "zebra", img: "images/zebra.JPG", },
     { name: "leopard", img: "images/leopard.JPG", },
     { name: "leopard", img: "images/leopard.JPG", },
-    { name: "gibbon", img: "images/gibbon.JPG", },
-    { name: "gibbon", img: "images/gibbon.JPG", },
-    { name: "reptile", img: "images/reptile.JPG", },
-    { name: "reptile", img: "images/reptile.JPG", },
     ]; 
     
     //define variables and get DOM element
 
     let grid = document.querySelector(".grid"); 
     let scoreBoard = document.querySelector(".scoreBoard"); 
-    let popup = document.querySelector(".popup"); 
     let playAgain = document.querySelector(".playAgain"); 
-    let clickBoard = document.querySelector(".clickBoard"); 
     let imgs; 
     let cardsId = []; 
     let cardsSelected = []; 
     let cardsWon = 0; 
     let clicks = 0;
     
-
   
     document.addEventListener("DOMContentLoaded", function () {
         let clickBoard = document.querySelector(".clickBoard"); 
         let scoreBoard = document.querySelector(".scoreBoard"); 
+    
 
-        //define functions 
+    //define functions 
         
         createBoard(grid, cardArray); 
         arrangeCard();
-        document.querySelector(".playAgain").addEventListener("click", replay); 
         
-        //add a click function for images 
+    //add a click function for images 
         
         imgs = document.querySelectorAll("img");
         Array.from(imgs).forEach(img => 
@@ -54,8 +48,6 @@ let cardArray = [
     //createBoard function
 
     function createBoard(grid, array) { 
-        console.log(array);
-        document.querySelector(".popup").style.display = 'none'; 
         array.forEach((arr, index) => { 
         let img = document.createElement("img"); 
         img.setAttribute("src", "images/background.JPG");
@@ -89,41 +81,25 @@ let cardArray = [
         let imgs = document.querySelectorAll("img"); 
         let firstCard = cardsId[0];
         let secondCard = cardsId[1];
-        if (cardsSelected[0] === cardsSelected[1] && firstCard !== secondCard) { 
-            alert("you have found a match"); 
-        cardsWon += 1; 
+        if (cardsSelected[0] === cardsSelected[1]) { 
+        cardsWon += 2; 
         scoreBoard.innerHTML = cardsWon; 
-        setTimeout(checkWon, 500);imgs[firstCard].setAttribute("src", "images/background.JPG");
-        imgs[secondCard].setAttribute("src", "images/background.JPG"); 
+        checkWon();
         } else { 
         imgs[firstCard].setAttribute("src", "images/background.JPG");
         imgs[secondCard].setAttribute("src", "images/background.JPG"); 
-        alert("wrong, try again"); imgs[firstCard].classList.remove("flip"); 
+        imgs[firstCard].classList.remove("flip"); 
         imgs[secondCard].classList.remove("flip"); 
     } 
+    
     cardsSelected = []; 
     cardsId = []; 
-    clicks += 1; 
+    clicks += 2; 
     document.querySelector(".clickBoard").innerHTML = clicks; 
     }
     
     function checkWon() {
-        if (cardsWon == cardArray.length / 2) {
-        alert("You won");
-        setTimeout(()=> popup.style.display = "flex" ,300); 
-        }
-    }
-
-
-    // The replay function
-
-    function replay() { 
-        arrangeCard(); 
-        grid.innerHTML = "";
-        createBoard(grid, cardArray);
-        cardsWon = 0;
-        clicks = 0; 
-        clickBoard.innerHTML = 0; 
-        scoreBoard.innerHTML = 0; 
-        popup.style.display = "none"; 
+        if (cardsWon == cardArray.length) {
+        alert("Congratulations!You won");
+      }
     }
