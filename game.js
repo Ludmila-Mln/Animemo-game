@@ -1,10 +1,5 @@
 
-
 let cardArray = [ 
-    { name: "bird", img: "images/bird.JPG", }, 
-    { name: "bird", img: "images/bird.JPG", }, 
-    { name: "fish", img: "images/fish.JPG", }, 
-    { name: "fish", img: "images/fish.JPG", }, 
     { name: "giraffe", img: "images/giraffe.JPG", },
     { name: "giraffe", img: "images/giraffe.JPG", },
     { name: "fox", img: "images/fox.JPG", },
@@ -15,35 +10,32 @@ let cardArray = [
     { name: "leopard", img: "images/leopard.JPG", },
     ]; 
     
-    //define variables and get DOM element
+//define variables and get DOM element
+let grid = document.querySelector(".grid"); 
+let scoreBoard = document.querySelector(".scoreBoard"); 
+let playAgain = document.querySelector(".playAgain"); 
+let imgs; 
+let cardsId = []; 
+let cardsSelected = []; 
+let cardsWon = 0; 
+let clicks = 0;
 
-    let grid = document.querySelector(".grid"); 
+document.addEventListener("DOMContentLoaded", function () {
+    let clickBoard = document.querySelector(".clickBoard"); 
     let scoreBoard = document.querySelector(".scoreBoard"); 
-    let playAgain = document.querySelector(".playAgain"); 
-    let imgs; 
-    let cardsId = []; 
-    let cardsSelected = []; 
-    let cardsWon = 0; 
-    let clicks = 0;
-    
-  
-    document.addEventListener("DOMContentLoaded", function () {
-        let clickBoard = document.querySelector(".clickBoard"); 
-        let scoreBoard = document.querySelector(".scoreBoard"); 
-    
 
-    //define functions 
+
+//define functions 
+createBoard(grid, cardArray); 
+arrangeCard();
         
-        createBoard(grid, cardArray); 
-        arrangeCard();
-        
-    //add a click function for images 
-        
-        imgs = document.querySelectorAll("img");
-        Array.from(imgs).forEach(img => 
-        img.addEventListener("click", flipCard)
-        );
-    });
+//add a click function for images 
+
+imgs = document.querySelectorAll("img");
+Array.from(imgs).forEach(img => 
+    img.addEventListener("click", flipCard)
+    );
+});
 
     //createBoard function
 
